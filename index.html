@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelab Sukan Kebangsaan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+   <header class="navbar">
+    <div class="logo">
+        <!-- Tambah tag img logo di sini -->
+        <img src="images/logo-sukan.webp" alt="Logo Kelab Sukan" class="logo-img">
+        Sukan<span>Club</span>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#" class="nav-btn active" data-target="intro">Pengenalan</a></li>
+            <li><a href="#" class="nav-btn" data-target="clubs">Kelab</a></li>
+            <li><a href="#" class="nav-btn" data-target="feedback">Maklum Balas</a></li>
+        </ul>
+    </nav>
+    <button id="theme-toggle" class="theme-btn" aria-label="Tukar Mod Tema">🌙</button>
+</header>
+
+    <main class="content-container">
+
+        <section id="intro" class="page-section active">
+            <div class="hero">
+                <h1>Gaya Hidup Sihat Bermula Di Sini</h1>
+                <p>Sertai Kelab Sukan kami untuk meneroka potensi diri, membina disiplin, dan menjalinkan persahabatan baharu melalui aktiviti fizikal yang menyeronokkan.</p>
+            </div>
+            
+            <h2 class="section-title">Kebaikan Menyertai Kelab Sukan</h2>
+            <div class="grid-benefits">
+                <div class="benefit-card">
+                    <h3>Kesihatan Fizikal</h3>
+                    <p>Meningkatkan stamina, menguatkan kardiovaskular, dan mengekalkan berat badan yang ideal.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Kesihatan Mental</h3>
+                    <p>Mengurangkan stres, meningkatkan fokus, dan merembeskan hormon endorfin untuk kegembiraan.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Semangat Berpasukan</h3>
+                    <p>Belajar berkomunikasi, bekerjasama, dan membina sifat kepimpinan yang tinggi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="clubs" class="page-section">
+    <h2 class="section-title">Pilihan Kelab Sukan Kami</h2>
+    <p class="section-subtitle">Pilih kelab yang bersesuaian dengan minat dan bakat anda.</p>
+    
+    <div class="grid-clubs">
+        <div class="club-card">
+            <img src="images/bola-sepak.webp" alt="Aktiviti Kelab Bola Sepak" class="club-card-img">
+            <div class="club-info">
+                <h3>Kelab Bola Sepak</h3>
+                <button class="view-char-btn" data-club="bolasepak">Lihat Karakteristik</button>
+            </div>
+        </div>
+
+        <div class="club-card">
+            <img src="images/badminton.webp" alt="Gelanggang dan Bulu Tangkis Badminton" class="club-card-img">
+            <div class="club-info">
+                <h3>Kelab Badminton</h3>
+                <button class="view-char-btn" data-club="badminton">Lihat Karakteristik</button>
+            </div>
+        </div>
+
+        <div class="club-card">
+            <img src="images/bola-keranjang.webp" alt="Perlawanan Bola Keranjang" class="club-card-img">
+            <div class="club-info">
+                <h3>Kelab Bola Keranjang</h3>
+                <button class="view-char-btn" data-club="bolakeranjang">Lihat Karakteristik</button>
+            </div>
+        </div>
+
+        <div class="club-card">
+            <img src="images/renang.webp" alt="Latihan Renang di Kolam" class="club-card-img">
+            <div class="club-info">
+                <h3>Renang</h3>
+                <button class="view-char-btn" data-club="renang">Lihat Karakteristik</button>
+            </div>
+        </div>
+
+        <div class="club-card">
+            <img src="images/Olahraga.webp" alt="Acara Larian Balapan Olahraga" class="club-card-img">
+            <div class="club-info">
+                <h3>Kelab Olahraga</h3>
+                <button class="view-char-btn" data-club="olahraga">Lihat Karakteristik</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="feedback" class="page-section">
+            <h2 class="section-title">Hubungi & Maklum Balas</h2>
+            <p class="section-subtitle">Sila isi borang di bawah untuk sebarang pertanyaan atau cadangan.</p>
+            
+            <div class="form-container">
+                <form id="feedback-form">
+                    <div class="form-group">
+                        <label for="name">Nama Penuh</label>
+                        <input type="text" id="name" required placeholder="Contoh: Ali Bin Ahmad">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mel</label>
+                        <input type="email" id="email" required placeholder="Contoh: ali@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="club-select">Kelab Pilihan</label>
+                        <select id="club-select">
+                            <option value="umum">Umum / Pertanyaan Lain</option>
+                            <option value="bola">Kelab Bola Sepak</option>
+                            <option value="badminton">Kelab Badminton</option>
+                            <option value="keranjang">Kelab Bola Keranjang</option>
+                            <option value="renang">Kelab Olahraga Air</option>
+                            <option value="olahraga">Kelab Olahraga</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mesej / Maklum Balas</label>
+                        <textarea id="message" rows="5" required placeholder="Tulis maklum balas anda di sini..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Hantar Maklum Balas</button>
+                </form>
+                <div id="form-success" class="success-message hidden">
+                    🎉 Terima kasih! Maklum balas anda telah berjaya dihantar.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="char-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Nama Kelab</h2>
+            <hr>
+            <h3>Karakteristik Utama:</h3>
+            <ul id="modal-list">
+                </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Kelab Sukan Kebangsaan. Semua Hak Cipta Terpelihara.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
