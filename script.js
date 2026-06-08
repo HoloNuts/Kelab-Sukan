@@ -1,683 +1,355 @@
-/* ==========================================
-   1. VARIABLES & BASE STYLES (Tema & Font)
-   ========================================== */
-:root {
-    --bg-color: #f8f9fa;
-    --text-color: #212529;
-    --card-bg: #ffffff;
-    --accent-color: #0d6efd;
-    --accent-hover: #0b5ed7;
-    --border-color: #dee2e6;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    --transition: all 0.3s ease;
-}
-
-/* Nilai pembolehubah untuk Mod Gelap */
-[data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #f8f9fa;
-    --card-bg: #1e1e1e;
-    --accent-color: #375a7f;
-    --accent-hover: #4b75a4;
-    --border-color: #333333;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: var(--transition);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* ==========================================
-   2. NAVBAR & HEADER
-   ========================================== */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background-color: var(--card-bg);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: var(--shadow);
-}
-
-/* Susun atur kontena logo supaya imej dan teks duduk sebaris */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; /* Jarak antara gambar logo dan teks */
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-}
-
-/* Gaya asal logo (Pastikan ada transition) */
-.logo-img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-    cursor: pointer; /* Menukar penunjuk tetikus kepada bentuk tangan */
-    transition: transform 0.3s ease; /* Mengawal kelajuan dan kelancaran animasi */
-}
-
-/* Kesan INTERAKTIF: Zoom masuk sedikit apabila tetikus berada di atas logo */
-.logo-img:hover {
-    transform: scale(1.15); /* 1.15 bermaksud logo akan membesar sebanyak 15% */
-}
-
-/* Kesan INTERAKTIF: Zoom masuk lebih besar sedikit apabila logo diklik/ditekan */
-.logo-img:active {
-    transform: scale(0.95); /* Memberi kesan 'picitan' (button press effect) */
-}
-
-.logo span {
-    color: var(--accent-color);
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-}
-
-.nav-btn {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: var(--transition);
-}
-
-.nav-btn:hover, .nav-btn.active {
-    background-color: var(--accent-color);
-    color: #ffffff;
-}
-
-.theme-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--card-bg);
-    transition: var(--transition);
-}
-
-/* ==========================================
-   3. STRUKTUR HALAMAN (SPA Toggle)
-   ========================================== */
-.content-container {
-    flex: 1;
-    padding: 2rem 5%;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.page-section {
-    display: none; /* Sembunyikan semua halaman secara default */
-    animation: fadeIn 0.5s ease forwards;
-}
-
-.page-section.active {
-    display: block; /* Paparkan halaman aktif sahaja */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Typography Umum */
-.section-title {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: #6c757d;
-    margin-bottom: 2rem;
-}
-
-/* ==========================================
-   4. HALAMAN 1: HERO, KEBAIKAN & SEJARAH AM
-   ========================================== */
-.hero {
-    text-align: center;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, var(--accent-color), #004085);
-    color: white;
-    border-radius: 12px;
-    margin-bottom: 3rem;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-/* Kotak Sejarah Am pada Halaman 1 */
-.intro-history-box {
-    background: var(--card-bg, #ffffff);
-    padding: 2rem;
-    border-radius: 12px;
-    margin: 2rem 0;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color, #e0e0e0);
-}
-
-.intro-history-box p {
-    line-height: 1.6;
-    color: #444;
-}
-
-.grid-benefits {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.benefit-card {
-    background-color: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow);
-}
-
-.benefit-card h3 {
-    margin-bottom: 0.75rem;
-    color: var(--accent-color);
-}
-
-/* ==========================================
-   5. HALAMAN 2: SENARAI KELAB (GRID)
-   ========================================== */
-.grid-clubs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-}
-
-.club-card {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-}
-
-.club-card:hover {
-    transform: translateY(-5px);
-}
-
-.club-image-placeholder {
-    height: 150px;
-    background-color: #e9ecef;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #495057;
-}
-
-[data-theme="dark"] .club-image-placeholder {
-    background-color: #2a2a2a;
-    color: #adb5bd;
-}
-
-.club-info {
-    padding: 1.2rem;
-    text-align: center;
-}
-
-.club-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-}
-
-.view-char-btn {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.85rem;
-    width: 100%;
-    transition: var(--transition);
-}
-
-.view-char-btn:hover {
-    background-color: var(--accent-hover);
-}
-
-/* ==========================================
-   6. INTERACTIVE MODAL (Page Kecil)
-   ========================================== */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 200;
-}
-
-.modal-content {
-    background-color: var(--card-bg);
-    padding: 2rem;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    font-size: 1.8rem;
-    cursor: pointer;
-}
-
-.modal hr {
-    margin: 1rem 0;
-    border: 0;
-    border-top: 1px solid var(--border-color);
-}
-
-/* Ruang hiasan tajuk kecil di dalam modal */
-.modal-content h3 {
-    font-size: 1.1rem;
-    color: var(--text-color);
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    border-left: 3px solid #007bff;
-    padding-left: 0.5rem;
-}
-
-.modal ul {
-    margin-top: 1rem;
-    padding-left: 1.5rem;
-}
-
-.modal li {
-    margin-bottom: 0.5rem;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* ==========================================
-   7. HALAMAN 3: BORANG MAKLUM BALAS
-   ========================================== */
-.form-container {
-    background-color: var(--card-bg);
-    padding: 2rem;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: var(--shadow);
-}
-
-.form-group {
-    margin-bottom: 1.25rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: inherit;
-    font-size: 0.95rem;
-    transition: var(--transition);
-}
-
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
-}
-
-.submit-btn {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-    transition: var(--transition);
-}
-
-.submit-btn:hover {
-    background-color: var(--accent-hover);
-}
-
-.success-message {
-    background-color: #d1e7dd;
-    color: #0f5132;
-    padding: 1rem;
-    border-radius: 6px;
-    text-align: center;
-    margin-top: 1rem;
-    font-weight: 600;
-}
-
-/* ==========================================
-   8. FOOTER
-   ========================================== */
-footer {
-    text-align: center;
-    padding: 1.5rem;
-    background-color: var(--card-bg);
-    border-top: 1px solid var(--border-color);
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: #6c757d;
-}
-
-/* ==========================================
-   9. SEKSYEN JADUAL SEJARAH & KELAS (BAHAGIAN BAWAH)
-   ========================================== */
-.history-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-    margin-top: 2rem;
-}
-
-/* Garis Masa (Timeline) */
-.history-timeline {
-    background: var(--card-bg, #ffffff);
-    padding: 1.5rem;
-    border-radius: 10px;
-    border: 1px solid var(--border-color, #e0e0e0);
-    box-shadow: var(--shadow);
-}
-
-.history-timeline h3, .classes-schedule h3 {
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
-    font-size: 1.3rem;
-    border-left: 4px solid #007bff;
-    padding-left: 0.5rem;
-}
-
-.timeline-item {
-    position: relative;
-    padding-left: 1.5rem;
-    border-left: 2px solid #007bff;
-    padding-bottom: 1.5rem;
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -6px;
-    top: 4px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #007bff;
-}
-
-.timeline-item h4 {
-    margin-bottom: 0.3rem;
-    font-size: 1rem;
-}
-
-.timeline-item p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #666;
-}
-
-/* Jadual Kelas (Table) */
-.classes-schedule {
-    background: var(--card-bg, #ffffff);
-    padding: 1.5rem;
-    border-radius: 10px;
-    border: 1px solid var(--border-color, #e0e0e0);
-    box-shadow: var(--shadow);
-}
-
-.table-responsive {
-    overflow-x: auto;
-}
-
-.schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-    text-align: left;
-}
-
-.schedule-table th, .schedule-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--border-color, #e0e0e0);
-}
-
-.schedule-table th {
-    background-color: rgba(0, 123, 255, 0.1);
-    color: var(--text-color);
-    font-weight: 600;
-}
-
-.schedule-table tr {
-    transition: background-color 0.2s ease;
-}
-
-.schedule-table tr:hover {
-    background-color: rgba(0, 0, 0, 0.02);
-    cursor: pointer;
-}
-
-/* Efek Highlight untuk Interaktiviti JavaScript */
-.row-highlight {
-    background-color: rgba(40, 167, 69, 0.2) !important;
-    font-weight: 600;
-}
-
-/* ==========================================
-   10. KETETAPAN MOD GELAP SOKONGAN (Dark Theme Override)
-   ========================================== */
-[data-theme="dark"] .timeline-item p {
-    color: #bbb;
-}
-
-[data-theme="dark"] .schedule-table tr:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-[data-theme="dark"] .intro-history-box p,
-[data-theme="dark"] #modal-history {
-    color: #ddd !important;
-}
-
-/* ==========================================
-   11. RESPONSIVENESS (Mobile Friendly)
-   ========================================== */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+// Data Karakteristik & Sejarah Kelab Sukan (Dipaparkan secara dinamik dalam Modal)
+const clubCharacteristics = {
+    bolasepak: {
+        title: "Kelab Bola Sepak",
+        history: "Undang-undang bola sepak moden mula digubal di England pada tahun 1863 oleh Persatuan Bola Sepak (FA), mengubah permainan sukan jalanan tradisional menjadi sukan global terulung yang paling popular di dunia hari ini.",
+        features: [
+            "Fokus kepada stamina tinggi dan larian pecut.",
+            "Melatih koordinasi kaki-mata dan strategi padang.",
+            "Keperluan: Kasut bola (studs) dan pelindung tulang kering.",
+            "Sesuai untuk individu yang sukakan kerja berpasukan berskala besar."
+        ]
+    },
+    badminton: {
+        title: "Kelab Badminton",
+        history: "Sukan badminton moden berkembang pada pertengahan abad ke-19 di India British sebagai 'Poona', sebelum dibawa pulang ke England dan dimainkan secara rasmi di estet 'Badminton House' di Gloucestershire pada tahun 1873.",
+        features: [
+            "Fokus kepada kelajuan refleks dan ketangkasan tangan.",
+            "Latihan intensif kardio jenis 'stop-and-go'.",
+            "Keperluan: Raket badminton dan kasut gelanggang dalaman.",
+            "Sesuai untuk permainan perseorangan mahupun bergu."
+        ]
+    },
+    bolakeranjang: {
+        title: "Kelab Bola Keranjang",
+        history: "Dicipta pada Disember 1891 oleh Dr. James Naismith, seorang guru pendidikan jasmani di Springfield, Amerika Syarikat. Beliau mencipta sukan ini sebagai aktiviti dalaman musim sejuk menggunakan bakul buah pic dan bola hoki.",
+        features: [
+            "Fokus kepada ketinggian lompatan dan kekuatan tubuh atas.",
+            "Melatih ketepatan balingan dan kemahiran mengelecek.",
+            "Keperluan: Kasut bola keranjang berdaya serapan tinggi.",
+            "Permainan dinamik yang mementingkan taktikal pantas."
+        ]
+    },
+    renang: {
+        title: "Kelab Renang",
+        history: "Aktiviti renang telah dikesan sejak zaman prasejarah lagi, namun ia mula dipertandingkan sebagai sukan kompetitif moden sekitar tahun 1830-an di England sebelum dimasukkan ke dalam Sukan Olimpik moden pertama pada tahun 1896.",
+        features: [
+            "Latihan impak rendah yang menyelamatkan sendi.",
+            "Membina kapasiti paru-paru dan kekuatan otot teras.",
+            "Keperluan: Pakaian renang, gogal, dan penutup kepala.",
+            "Sesuai untuk semua tahap kecergasan fizikal."
+        ]
+    },
+    olahraga: {
+        title: "Kelab Olahraga",
+        history: "Olahraga merupakan antara sukan tertua di dunia yang bermula sejak Sukan Olimpik Kuno di Greece pada tahun 776 SM. Sukan ini merangkumi disiplin asas manusia paling tulen iaitu larian, lompatan, dan balingan.",
+        features: [
+            "Merangkumi acara balapan (larian) dan padang (lompat/baling).",
+            "Melatih disiplin asas pergerakan manusia secara maksima.",
+            "Keperluan: Kasut sukan bersesuaian (running shoes/spikes).",
+            "Sesuai untuk pembinement kekuatan asas atlet."
+        ]
+    }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    /* ==========================================
+       1. LOGIK NAVIGASI (Single Page Application)
+       ========================================== */
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const pages = document.querySelectorAll(".page-section");
+
+    navButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            
+            navButtons.forEach(btn => btn.classList.remove("active"));
+            pages.forEach(page => page.classList.remove("active"));
+
+            button.classList.add("active");
+            
+            const targetPageId = button.getAttribute("data-target");
+            document.getElementById(targetPageId).classList.add("active");
+        });
+    });
+
+    /* ==========================================
+       2. LOGIK INTERAKTIF MODAL (Karakteristik & Sejarah)
+       ========================================== */
+    const modal = document.getElementById("char-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalHistory = document.getElementById("modal-history");
+    const modalList = document.getElementById("modal-list");
+    const closeModalBtn = document.querySelector(".close-modal");
+    const charButtons = document.querySelectorAll(".view-char-btn");
+
+    charButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const clubKey = button.getAttribute("data-club");
+            const data = clubCharacteristics[clubKey];
+
+            if (data) {
+                modalTitle.textContent = data.title;
+                modalHistory.textContent = data.history;
+                modalList.innerHTML = "";
+                
+                data.features.forEach(feature => {
+                    const li = document.createElement("li");
+                    li.textContent = feature;
+                    modalList.appendChild(li);
+                });
+
+                modal.classList.remove("hidden");
+            }
+        });
+    });
+
+    closeModalBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+    });
+
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.add("hidden");
+        }
+    });
+
+    /* ==========================================
+       3. TOGGLE MOD GELAP / CERAH
+       ========================================== */
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme) {
+        document.documentElement.setAttribute("data-theme", currentTheme);
+        themeToggleBtn.textContent = currentTheme === "dark" ? "☀️" : "🌙";
     }
 
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-        gap: 0.5rem;
+    themeToggleBtn.addEventListener("click", () => {
+        let theme = document.documentElement.getAttribute("data-theme");
+        
+        if (theme === "dark") {
+            document.documentElement.removeAttribute("data-theme");
+            themeToggleBtn.textContent = "🌙";
+            localStorage.setItem("theme", "light");
+        } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+            themeToggleBtn.textContent = "☀️";
+            localStorage.setItem("theme", "dark");
+        }
+    });
+
+    /* ==========================================
+       4. ANIMASI INTERAKTIF LOGO
+       ========================================== */
+    const logoImage = document.querySelector(".logo-img");
+
+    if (logoImage) {
+        logoImage.addEventListener("click", () => {
+            logoImage.classList.add("logo-bounce");
+            setTimeout(() => {
+                logoImage.classList.remove("logo-bounce");
+            }, 400);
+        });
     }
 
-    .nav-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.85rem;
+    /* ==========================================
+       5. INTERAKSI BORANG MAKLUM BALAS
+       ========================================== */
+    const feedbackForm = document.getElementById("feedback-form");
+    const successMsg = document.getElementById("form-success");
+
+    feedbackForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        feedbackForm.reset();
+        successMsg.classList.remove("hidden");
+
+        setTimeout(() => {
+            successMsg.classList.add("hidden");
+        }, 5000);
+    });
+	
+    /* ==========================================
+       6. LOGIK INTERAKTIF SPAWN BOLA & FIZIK KURSOR
+       ========================================== */
+    const hubToggle = document.getElementById("sports-hub-toggle");
+    const sportsMenu = document.getElementById("sports-menu");
+    const spawnButtons = document.querySelectorAll(".spawn-item-btn");
+    const clearSportsBtn = document.getElementById("clear-sports-btn");
+    
+    let activeObjects = [];
+
+    // Buka / Tutup Menu Hub
+    hubToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        sportsMenu.classList.toggle("hidden");
+    });
+
+    // Tutup menu jika klik di tempat lain
+    document.addEventListener("click", () => {
+        sportsMenu.classList.add("hidden");
+    });
+
+    // Klik butang untuk spawn objek
+    spawnButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const emoji = button.getAttribute("data-type") || button.innerText.split(" ")[0]; 
+            createSportObject(emoji);
+        });
+    });
+
+    // Bersihkan semua objek sukan di skrin
+    clearSportsBtn.addEventListener("click", () => {
+        activeObjects.forEach(obj => obj.element.remove());
+        activeObjects = [];
+    });
+
+    // Fungsi Utama Mencipta Objek Sukan + Simulasi Fizik Melantun pada Kursor
+    function createSportObject(emoji) {
+        const objEl = document.createElement("div");
+        objEl.className = "spawned-sport-object";
+        objEl.innerText = emoji;
+
+        // Set lokasi spawn rawak di tengah-tengah skrin atas
+        let posX = window.innerWidth / 2 + (Math.random() * 100 - 50);
+        let posY = 100;
+        
+        // Nilai Halaju (Velocity) & Fizik Asas
+        let velX = (Math.random() * 10 - 5); 
+        let velY = 0;
+        const gravity = 0.4;
+        const bounce = -0.75;  // Daya lantunan semula dinding/lantai
+        const friction = 0.98; // Geseran udara
+        const radius = 30;     // Jejari objek (saiz 60px / 2)
+
+        objEl.style.left = posX + "px";
+        objEl.style.top = posY + "px";
+        document.body.appendChild(objEl);
+
+        let isDragging = false;
+        
+        // Menyimpan posisi kursor tetikus semasa global
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (!isDragging) return;
+            // Kemas kini kedudukan mengikut cursor tetikus jika sedang di-drag
+            posX = mouseX - radius;
+            posY = mouseY - radius;
+            objEl.style.left = posX + "px";
+            objEl.style.top = posY + "px";
+        });
+
+        // --- SISTEM DRAG & DROP ---
+        objEl.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            velX = 0;
+            velY = 0;
+        });
+
+        document.addEventListener("mouseup", (e) => {
+            if (isDragging) {
+                isDragging = false;
+                velX = (Math.random() * 14 - 7);
+                velY = -8;
+            }
+        });
+
+        // --- INTERAKSI TENDANG (JIKA DIKLIK) ---
+        objEl.addEventListener("click", () => {
+            if (!isDragging) {
+                velY = -12;
+                velX = (Math.random() * 20 - 10);
+            }
+        });
+
+        // Loop Animasi Fizik Real-Time
+        function updatePhysics() {
+            if (!isDragging) {
+                // 1. KIRA KEDUDUKAN PUSAT BOLA & JARAK DENGAN KURSOR
+                const ballCenterX = posX + radius;
+                const ballCenterY = posY + radius;
+
+                const diffX = ballCenterX - mouseX;
+                const diffY = ballCenterY - mouseY;
+                const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                // Jarak sensitiviti tolakan (dalam piksel). 
+                // Jika kursor berada dalam lingkungan 65px dari pusat bola, bola akan tertolak.
+                const kickRadius = 65; 
+
+                if (distance < kickRadius && distance > 0) {
+                    // Kira arah tolakan (Vector Normalization)
+                    const dirX = diffX / distance;
+                    const dirY = diffY / distance;
+
+                    // Kekuatan tolakan (semakin dekat kursor, semakin kuat lantunan)
+                    const force = (kickRadius - distance) * 0.5;
+
+                    // Berikan impak halaju (velocity) baharu kepada bola
+                    velX += dirX * force * 1.5;
+                    velY += dirY * force * 1.5;
+                    
+                    // Beri had laju maksimum supaya bola tidak terkeluar skrin terlalu laju
+                    const maxSpeed = 25;
+                    if (velX > maxSpeed) velX = maxSpeed;
+                    if (velX < -maxSpeed) velX = -maxSpeed;
+                    if (velY > maxSpeed) velY = maxSpeed;
+                    if (velY < -maxSpeed) velY = -maxSpeed;
+                }
+
+                // 2. SIMULASI GRAVITI & GESERAN
+                velY += gravity;
+                velX *= friction;
+
+                posX += velX;
+                posY += velY;
+
+                // 3. BATASAN SEMPADAN SKRIN
+                // Lantai
+                const groundLevel = window.innerHeight - 85; 
+                if (posY >= groundLevel) {
+                    posY = groundLevel;
+                    velY *= bounce; 
+                    // Berhentikan lantunan mikro yang tiada henti di atas lantai
+                    if (Math.abs(velY) < 1.5) velY = 0;
+                }
+                // Siling (Atas skrin)
+                if (posY <= 0) {
+                    posY = 0;
+                    velY *= bounce;
+                }
+                // Dinding Kiri
+                if (posX <= 0) {
+                    posX = 0;
+                    velX *= bounce;
+                } 
+                // Dinding Kanan
+                else if (posX >= window.innerWidth - 60) {
+                    posX = window.innerWidth - 60;
+                    velX *= bounce;
+                }
+
+                // 4. KEMASKINI VISUAL & PUTARAN (ROTATION)
+                objEl.style.left = posX + "px";
+                objEl.style.top = posY + "px";
+
+                if (emoji === "⚽" || emoji === "🏀") {
+                    objEl.style.transform = `rotate(${posX * 1.5}deg)`;
+                }
+            }
+            requestAnimationFrame(updatePhysics);
+        }
+
+        requestAnimationFrame(updatePhysics);
+
+        // Simpan ke dalam array tracker untuk fungsi clear
+        activeObjects.push({ element: objEl });
     }
-
-    .theme-btn {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .history-container {
-        grid-template-columns: 1fr; /* Menjadi 1 lajur pada skrin telefon */
-    }
-}
-
-/* ==========================================
-   12. INTERAKTIF HUB & SPAWN OBJEK (BAHARU)
-   ========================================== */
-.interactive-sports-hub {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 9999; /* Sentiasa berada di lapisan paling atas */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-}
-
-/* Butang Bulat Utama */
-.hub-main-btn {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background-color: #28a745;
-    color: white;
-    font-size: 1.5rem;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transition: transform 0.2s ease, background-color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hub-main-btn:hover {
-    transform: scale(1.1) rotate(15deg);
-    background-color: #218838;
-}
-
-/* Menu Pilihan Sukan */
-.sports-menu {
-    background: var(--card-bg, #ffffff);
-    border: 1px solid var(--border-color, #dee2e6);
-    padding: 10px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    animation: slideUp 0.3s ease;
-}
-
-.spawn-item-btn, .clear-btn {
-    background: var(--bg-color, #f8f9fa);
-    color: var(--text-color, #212529);
-    border: 1px solid var(--border-color, #dee2e6);
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-align: left;
-    transition: var(--transition);
-    white-space: nowrap;
-}
-
-.spawn-item-btn:hover {
-    background-color: var(--accent-color, #0d6efd);
-    color: white;
-}
-
-.clear-btn {
-    background-color: #dc3545;
-    color: white;
-    text-align: center;
-}
-
-.clear-btn:hover {
-    background-color: #c82333;
-}
-
-/* Gaya Elemen Sukan Yang Di-spawn (Bola/Bulu Tangkis) */
-.spawned-sport-object {
-    position: fixed;
-    font-size: 3rem;
-    cursor: grab;
-    user-select: none;
-    z-index: 9998;
-    transition: transform 0.05s linear;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.spawned-sport-object:active {
-    cursor: grabbing;
-}
+});
